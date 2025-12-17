@@ -21,6 +21,78 @@
     --user-message-bg: #e8d5c4;
 }
 
+/* Spaceship Theme */
+body[data-theme="spaceship"] {
+    --primary: #6b5ce7;
+    --primary-light: #9d8df1;
+    --secondary: #4a3fbd;
+    --accent: #8b7ff5;
+    --bg-primary: #0a0e27;
+    --bg-secondary: #141935;
+    --text-primary: #e8e9f3;
+    --text-secondary: #b8b9d1;
+    --text-light: #8a8ba8;
+    --border: #2a2f4f;
+    --shadow: rgba(107, 92, 231, 0.15);
+    --shadow-hover: rgba(107, 92, 231, 0.25);
+    --ai-message-bg: #1e2442;
+    --user-message-bg: #2d3558;
+}
+
+/* Unicorn Theme */
+body[data-theme="unicorn"] {
+    --primary: #e74c9c;
+    --primary-light: #f177b5;
+    --secondary: #bc3e82;
+    --accent: #f5a8d1;
+    --bg-primary: #fff0f8;
+    --bg-secondary: #fff;
+    --text-primary: #4a1a3d;
+    --text-secondary: #7a4a6d;
+    --text-light: #a87a9d;
+    --border: #ffd4ed;
+    --shadow: rgba(231, 76, 156, 0.1);
+    --shadow-hover: rgba(231, 76, 156, 0.2);
+    --ai-message-bg: #ffe4f3;
+    --user-message-bg: #ffc9ea;
+}
+
+/* Ocean Theme */
+body[data-theme="ocean"] {
+    --primary: #1e88e5;
+    --primary-light: #5fa9ed;
+    --secondary: #1565c0;
+    --accent: #64b5f6;
+    --bg-primary: #e3f2fd;
+    --bg-secondary: #fff;
+    --text-primary: #0d47a1;
+    --text-secondary: #1976d2;
+    --text-light: #5e92d1;
+    --border: #bbdefb;
+    --shadow: rgba(30, 136, 229, 0.1);
+    --shadow-hover: rgba(30, 136, 229, 0.2);
+    --ai-message-bg: #e1f5fe;
+    --user-message-bg: #b3e5fc;
+}
+
+/* Forest Theme */
+body[data-theme="forest"] {
+    --primary: #2e7d32;
+    --primary-light: #5fa463;
+    --secondary: #1b5e20;
+    --accent: #81c784;
+    --bg-primary: #f1f8f4;
+    --bg-secondary: #fff;
+    --text-primary: #1b5e20;
+    --text-secondary: #2e7d32;
+    --text-light: #558b57;
+    --border: #c8e6c9;
+    --shadow: rgba(46, 125, 50, 0.1);
+    --shadow-hover: rgba(46, 125, 50, 0.2);
+    --ai-message-bg: #e8f5e9;
+    --user-message-bg: #c8e6c9;
+}
+
 body {
     font-family: 'Lora', Georgia, serif;
     background: var(--bg-primary);
@@ -38,12 +110,65 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
+    background:
         radial-gradient(circle at 20% 20%, rgba(232, 213, 196, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(212, 181, 160, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 50% 50%, rgba(168, 144, 128, 0.1) 0%, transparent 70%);
     z-index: 0;
     animation: gradientShift 20s ease-in-out infinite;
+    transition: background 0.5s ease;
+}
+
+/* Spaceship Theme Background */
+body[data-theme="spaceship"] .background-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(107, 92, 231, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(74, 63, 189, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(157, 141, 241, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 50%, rgba(139, 127, 245, 0.1) 0%, transparent 30%);
+}
+
+body[data-theme="spaceship"] .shape {
+    background: radial-gradient(circle at 30% 30%, rgba(107, 92, 231, 0.3), rgba(157, 141, 241, 0.15));
+}
+
+/* Unicorn Theme Background */
+body[data-theme="unicorn"] .background-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(231, 76, 156, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(245, 168, 209, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(241, 119, 181, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 20%, rgba(188, 62, 130, 0.15) 0%, transparent 35%);
+}
+
+body[data-theme="unicorn"] .shape {
+    background: radial-gradient(circle at 30% 30%, rgba(231, 76, 156, 0.3), rgba(245, 168, 209, 0.2));
+}
+
+/* Ocean Theme Background */
+body[data-theme="ocean"] .background-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(30, 136, 229, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(100, 181, 246, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(95, 169, 237, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 30% 70%, rgba(21, 101, 192, 0.1) 0%, transparent 35%);
+}
+
+body[data-theme="ocean"] .shape {
+    background: radial-gradient(circle at 30% 30%, rgba(30, 136, 229, 0.25), rgba(100, 181, 246, 0.15));
+}
+
+/* Forest Theme Background */
+body[data-theme="forest"] .background-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(46, 125, 50, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(129, 199, 132, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(95, 164, 99, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 30%, rgba(27, 94, 32, 0.1) 0%, transparent 35%);
+}
+
+body[data-theme="forest"] .shape {
+    background: radial-gradient(circle at 30% 30%, rgba(46, 125, 50, 0.25), rgba(129, 199, 132, 0.15));
 }
 
 @keyframes gradientShift {
@@ -117,6 +242,48 @@ body {
     text-align: center;
     padding: 3rem 0 2rem;
     animation: fadeInDown 1s ease-out;
+    position: relative;
+}
+
+/* Theme Selector */
+.theme-selector {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.theme-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.theme-dropdown {
+    padding: 0.5rem 0.75rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.theme-dropdown:hover {
+    border-color: var(--primary-light);
+    box-shadow: 0 4px 12px var(--shadow-hover);
+}
+
+.theme-dropdown:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 4px 16px var(--shadow-hover);
 }
 
 @keyframes fadeInDown {
@@ -445,6 +612,191 @@ body {
     }
 }
 
+/* Theme-specific animations */
+.theme-animations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.theme-element {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Forest Theme Animations */
+body[data-theme="forest"] .forest-tree {
+    width: 80px;
+    height: 120px;
+    bottom: 0;
+    animation: swayTree 4s ease-in-out infinite;
+}
+
+body[data-theme="forest"] .forest-tree:nth-child(1) { left: 5%; animation-delay: 0s; }
+body[data-theme="forest"] .forest-tree:nth-child(2) { left: 15%; animation-delay: -1s; }
+body[data-theme="forest"] .forest-tree:nth-child(3) { right: 10%; animation-delay: -2s; }
+body[data-theme="forest"] .forest-tree:nth-child(4) { right: 25%; animation-delay: -1.5s; }
+
+@keyframes swayTree {
+    0%, 100% { transform: rotate(0deg); opacity: 0.6; }
+    50% { transform: rotate(2deg); opacity: 0.8; }
+}
+
+body[data-theme="forest"] .forest-squirrel {
+    width: 40px;
+    height: 40px;
+    animation: popSquirrel 1s ease-out forwards;
+}
+
+@keyframes popSquirrel {
+    0% { transform: translateY(100px) scale(0); opacity: 0; }
+    30% { transform: translateY(0) scale(1.1); opacity: 1; }
+    70% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 0; }
+}
+
+body[data-theme="forest"] .forest-bird {
+    width: 30px;
+    height: 30px;
+    animation: flyBird 6s linear forwards;
+}
+
+@keyframes flyBird {
+    0% { transform: translateX(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
+}
+
+/* Ocean Theme Animations */
+body[data-theme="ocean"] .ocean-kelp {
+    width: 60px;
+    height: 150px;
+    bottom: 0;
+    animation: swayKelp 3s ease-in-out infinite;
+}
+
+body[data-theme="ocean"] .ocean-kelp:nth-child(1) { left: 8%; animation-delay: 0s; }
+body[data-theme="ocean"] .ocean-kelp:nth-child(2) { left: 20%; animation-delay: -1s; }
+body[data-theme="ocean"] .ocean-kelp:nth-child(3) { right: 15%; animation-delay: -2s; }
+body[data-theme="ocean"] .ocean-kelp:nth-child(4) { right: 30%; animation-delay: -0.5s; }
+
+@keyframes swayKelp {
+    0%, 100% { transform: rotate(-3deg) scaleY(1); opacity: 0.5; }
+    50% { transform: rotate(3deg) scaleY(1.05); opacity: 0.7; }
+}
+
+body[data-theme="ocean"] .ocean-fish {
+    width: 50px;
+    height: 30px;
+    animation: swimFish 8s linear forwards;
+}
+
+@keyframes swimFish {
+    0% { transform: translateX(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
+}
+
+body[data-theme="ocean"] .ocean-bubble {
+    width: 20px;
+    height: 20px;
+    animation: riseBubble 6s ease-in forwards;
+}
+
+@keyframes riseBubble {
+    0% { transform: translateY(0) scale(0.5); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+}
+
+/* Spaceship Theme Animations */
+body[data-theme="spaceship"] .space-star {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: white;
+    animation: twinkleStar 3s ease-in-out infinite;
+}
+
+body[data-theme="spaceship"] .space-star:nth-child(odd) { animation-delay: -1s; }
+body[data-theme="spaceship"] .space-star:nth-child(even) { animation-delay: -2s; }
+
+@keyframes twinkleStar {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+body[data-theme="spaceship"] .space-shooting-star {
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.8);
+    animation: shootingStar 2s linear forwards;
+}
+
+@keyframes shootingStar {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(300px, 300px); opacity: 0; }
+}
+
+body[data-theme="spaceship"] .space-planet {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    animation: floatPlanet 15s ease-in-out infinite;
+}
+
+@keyframes floatPlanet {
+    0%, 100% { transform: translate(0, 0); opacity: 0.7; }
+    50% { transform: translate(30px, -30px); opacity: 0.9; }
+}
+
+/* Unicorn Theme Animations */
+body[data-theme="unicorn"] .unicorn-sparkle {
+    width: 20px;
+    height: 20px;
+    animation: sparkle 2s ease-out forwards;
+}
+
+@keyframes sparkle {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+body[data-theme="unicorn"] .unicorn-butterfly {
+    width: 40px;
+    height: 40px;
+    animation: floatButterfly 8s ease-in-out forwards;
+}
+
+@keyframes floatButterfly {
+    0% { transform: translate(0, 100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translate(200px, -100px); opacity: 0; }
+}
+
+body[data-theme="unicorn"] .unicorn-rainbow {
+    width: 150px;
+    height: 100px;
+    animation: fadeRainbow 3s ease-out forwards;
+}
+
+@keyframes fadeRainbow {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.1); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {
@@ -466,6 +818,17 @@ body {
 
     .shape {
         display: none;
+    }
+
+    .theme-selector {
+        position: static;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .theme-dropdown {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
     }
 }
 
