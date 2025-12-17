@@ -249,12 +249,12 @@ const svgElements = {
     </svg>`,
 
     // Unicorn theme
-    unicornSparkle: `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    rainbowSparkle: `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <polygon points="10,0 12,8 20,10 12,12 10,20 8,12 0,10 8,8" fill="#f177b5"/>
         <polygon points="10,3 11,8 16,10 11,12 10,17 9,12 4,10 9,8" fill="#ffc9ea"/>
     </svg>`,
 
-    unicornButterfly: `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    rainbowButterfly: `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="15" cy="20" rx="10" ry="12" fill="#e74c9c" opacity="0.8"/>
         <ellipse cx="25" cy="20" rx="10" ry="12" fill="#f177b5" opacity="0.8"/>
         <rect x="18" y="10" width="4" height="20" rx="2" fill="#bc3e82"/>
@@ -262,13 +262,7 @@ const svgElements = {
         <circle cx="26" cy="16" r="2" fill="#fff"/>
     </svg>`,
 
-    unicornRainbow: `<svg viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 10 90 Q 75 20 140 90" stroke="#e74c9c" stroke-width="8" fill="none" stroke-linecap="round"/>
-        <path d="M 15 90 Q 75 30 135 90" stroke="#f177b5" stroke-width="8" fill="none" stroke-linecap="round"/>
-        <path d="M 20 90 Q 75 40 130 90" stroke="#ffc9ea" stroke-width="8" fill="none" stroke-linecap="round"/>
-    </svg>`,
-
-    unicornRainbow: `<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    rainbowArc: `<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path d="M -100 550 Q 500 50 1100 550" stroke="#C8A2D8" stroke-width="20" fill="none"/>
         <path d="M -100 550 Q 500 65 1100 550" stroke="#9FA8DA" stroke-width="20" fill="none"/>
         <path d="M -100 550 Q 500 80 1100 550" stroke="#90CAF9" stroke-width="20" fill="none"/>
@@ -308,11 +302,11 @@ function createBackgroundElements(theme) {
             star.style.top = Math.random() * 100 + '%';
             themeAnimationsContainer.appendChild(star);
         }
-    } else if (theme === 'unicorn') {
+    } else if (theme === 'rainbow') {
         // Add one fixed rainbow that fades in/out
         const rainbow = document.createElement('div');
-        rainbow.className = 'theme-element unicorn-rainbow';
-        rainbow.innerHTML = svgElements.unicornRainbow;
+        rainbow.className = 'theme-element rainbow-arc';
+        rainbow.innerHTML = svgElements.rainbowArc;
         themeAnimationsContainer.appendChild(rainbow);
     }
 }
@@ -385,14 +379,14 @@ function spawnOccasionalElement(theme) {
             themeAnimationsContainer.appendChild(planet);
             setTimeout(() => planet.remove(), 15000);
         }
-    } else if (theme === 'unicorn') {
+    } else if (theme === 'rainbow') {
         // Randomly spawn sparkle or butterfly (rainbow is always visible in background)
         const random = Math.random();
         if (random < 0.7) {
             // Spawn sparkle
             const sparkle = document.createElement('div');
-            sparkle.className = 'theme-element unicorn-sparkle';
-            sparkle.innerHTML = svgElements.unicornSparkle;
+            sparkle.className = 'theme-element rainbow-sparkle';
+            sparkle.innerHTML = svgElements.rainbowSparkle;
             sparkle.style.left = (Math.random() * 90 + 5) + '%';
             sparkle.style.top = (Math.random() * 90 + 5) + '%';
             themeAnimationsContainer.appendChild(sparkle);
@@ -400,8 +394,8 @@ function spawnOccasionalElement(theme) {
         } else {
             // Spawn butterfly
             const butterfly = document.createElement('div');
-            butterfly.className = 'theme-element unicorn-butterfly';
-            butterfly.innerHTML = svgElements.unicornButterfly;
+            butterfly.className = 'theme-element rainbow-butterfly';
+            butterfly.innerHTML = svgElements.rainbowButterfly;
             butterfly.style.left = (Math.random() * 80 + 10) + '%';
             butterfly.style.bottom = '-50px';
             themeAnimationsContainer.appendChild(butterfly);
