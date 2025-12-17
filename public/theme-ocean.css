@@ -1,0 +1,76 @@
+/* Ocean Theme */
+
+/* Color Variables */
+body[data-theme="ocean"] {
+    --primary: #1e88e5;
+    --primary-light: #5fa9ed;
+    --secondary: #1565c0;
+    --accent: #64b5f6;
+    --bg-primary: #e3f2fd;
+    --bg-secondary: #fff;
+    --text-primary: #0d47a1;
+    --text-secondary: #1976d2;
+    --text-light: #5e92d1;
+    --border: #bbdefb;
+    --shadow: rgba(30, 136, 229, 0.1);
+    --shadow-hover: rgba(30, 136, 229, 0.2);
+    --ai-message-bg: #e1f5fe;
+    --user-message-bg: #b3e5fc;
+}
+
+/* Background Gradient */
+body[data-theme="ocean"] .background-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(30, 136, 229, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(100, 181, 246, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(95, 169, 237, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 30% 70%, rgba(21, 101, 192, 0.1) 0%, transparent 35%);
+}
+
+body[data-theme="ocean"] .shape {
+    background: radial-gradient(circle at 30% 30%, rgba(30, 136, 229, 0.25), rgba(100, 181, 246, 0.15));
+}
+
+/* Ocean Theme Animations */
+body[data-theme="ocean"] .ocean-kelp {
+    width: 60px;
+    height: 150px;
+    bottom: 0;
+    animation: swayKelp 3s ease-in-out infinite;
+}
+
+body[data-theme="ocean"] .ocean-kelp:nth-child(1) { left: 8%; animation-delay: 0s; }
+body[data-theme="ocean"] .ocean-kelp:nth-child(2) { left: 20%; animation-delay: -1s; }
+body[data-theme="ocean"] .ocean-kelp:nth-child(3) { right: 15%; animation-delay: -2s; }
+body[data-theme="ocean"] .ocean-kelp:nth-child(4) { right: 30%; animation-delay: -0.5s; }
+
+@keyframes swayKelp {
+    0%, 100% { transform: rotate(-3deg) scaleY(1); opacity: 0.5; }
+    50% { transform: rotate(3deg) scaleY(1.05); opacity: 0.7; }
+}
+
+body[data-theme="ocean"] .ocean-fish {
+    width: 50px;
+    height: 30px;
+    animation: swimFish 8s linear forwards;
+}
+
+@keyframes swimFish {
+    0% { transform: translateX(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
+}
+
+body[data-theme="ocean"] .ocean-bubble {
+    width: 20px;
+    height: 20px;
+    animation: riseBubble 6s ease-in forwards;
+}
+
+@keyframes riseBubble {
+    0% { transform: translateY(0) scale(0.5); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+}

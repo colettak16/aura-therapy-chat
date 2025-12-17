@@ -1,0 +1,76 @@
+/* Forest Theme */
+
+/* Color Variables */
+body[data-theme="forest"] {
+    --primary: #2e7d32;
+    --primary-light: #5fa463;
+    --secondary: #1b5e20;
+    --accent: #81c784;
+    --bg-primary: #f1f8f4;
+    --bg-secondary: #fff;
+    --text-primary: #1b5e20;
+    --text-secondary: #2e7d32;
+    --text-light: #558b57;
+    --border: #c8e6c9;
+    --shadow: rgba(46, 125, 50, 0.1);
+    --shadow-hover: rgba(46, 125, 50, 0.2);
+    --ai-message-bg: #e8f5e9;
+    --user-message-bg: #c8e6c9;
+}
+
+/* Background Gradient */
+body[data-theme="forest"] .background-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(46, 125, 50, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(129, 199, 132, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(95, 164, 99, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 30%, rgba(27, 94, 32, 0.1) 0%, transparent 35%);
+}
+
+body[data-theme="forest"] .shape {
+    background: radial-gradient(circle at 30% 30%, rgba(46, 125, 50, 0.25), rgba(129, 199, 132, 0.15));
+}
+
+/* Forest Theme Animations */
+body[data-theme="forest"] .forest-tree {
+    width: 80px;
+    height: 120px;
+    bottom: 0;
+    animation: swayTree 4s ease-in-out infinite;
+}
+
+body[data-theme="forest"] .forest-tree:nth-child(1) { left: 5%; animation-delay: 0s; }
+body[data-theme="forest"] .forest-tree:nth-child(2) { left: 15%; animation-delay: -1s; }
+body[data-theme="forest"] .forest-tree:nth-child(3) { right: 10%; animation-delay: -2s; }
+body[data-theme="forest"] .forest-tree:nth-child(4) { right: 25%; animation-delay: -1.5s; }
+
+@keyframes swayTree {
+    0%, 100% { transform: rotate(0deg); opacity: 0.6; }
+    50% { transform: rotate(2deg); opacity: 0.8; }
+}
+
+body[data-theme="forest"] .forest-squirrel {
+    width: 40px;
+    height: 40px;
+    animation: popSquirrel 1s ease-out forwards;
+}
+
+@keyframes popSquirrel {
+    0% { transform: translateY(100px) scale(0); opacity: 0; }
+    30% { transform: translateY(0) scale(1.1); opacity: 1; }
+    70% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 0; }
+}
+
+body[data-theme="forest"] .forest-bird {
+    width: 30px;
+    height: 30px;
+    animation: flyBird 6s linear forwards;
+}
+
+@keyframes flyBird {
+    0% { transform: translateX(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
+}

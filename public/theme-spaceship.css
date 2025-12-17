@@ -1,0 +1,74 @@
+/* Spaceship Theme */
+
+/* Color Variables */
+body[data-theme="spaceship"] {
+    --primary: #6b5ce7;
+    --primary-light: #9d8df1;
+    --secondary: #4a3fbd;
+    --accent: #8b7ff5;
+    --bg-primary: #0a0e27;
+    --bg-secondary: #141935;
+    --text-primary: #e8e9f3;
+    --text-secondary: #b8b9d1;
+    --text-light: #8a8ba8;
+    --border: #2a2f4f;
+    --shadow: rgba(107, 92, 231, 0.15);
+    --shadow-hover: rgba(107, 92, 231, 0.25);
+    --ai-message-bg: #1e2442;
+    --user-message-bg: #2d3558;
+}
+
+/* Background Gradient */
+body[data-theme="spaceship"] .background-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(107, 92, 231, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(74, 63, 189, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(157, 141, 241, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 50%, rgba(139, 127, 245, 0.1) 0%, transparent 30%);
+}
+
+body[data-theme="spaceship"] .shape {
+    background: radial-gradient(circle at 30% 30%, rgba(107, 92, 231, 0.3), rgba(157, 141, 241, 0.15));
+}
+
+/* Spaceship Theme Animations */
+body[data-theme="spaceship"] .space-star {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: white;
+    animation: twinkleStar 3s ease-in-out infinite;
+}
+
+body[data-theme="spaceship"] .space-star:nth-child(odd) { animation-delay: -1s; }
+body[data-theme="spaceship"] .space-star:nth-child(even) { animation-delay: -2s; }
+
+@keyframes twinkleStar {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+body[data-theme="spaceship"] .space-shooting-star {
+    width: 6px;
+    height: 6px;
+    background: white;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.8);
+    animation: shootingStar 0.5s linear forwards;
+}
+
+@keyframes shootingStar {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(300px, 300px); opacity: 0; }
+}
+
+body[data-theme="spaceship"] .space-planet {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    animation: floatPlanet 15s ease-in-out infinite;
+}
+
+@keyframes floatPlanet {
+    0%, 100% { transform: translate(0, 0); opacity: 0.7; }
+    50% { transform: translate(30px, -30px); opacity: 0.9; }
+}

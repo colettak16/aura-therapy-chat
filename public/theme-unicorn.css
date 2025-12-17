@@ -1,0 +1,99 @@
+/* Unicorn Theme */
+
+/* Color Variables */
+body[data-theme="unicorn"] {
+    --primary: #e74c9c;
+    --primary-light: #f177b5;
+    --secondary: #bc3e82;
+    --accent: #f5a8d1;
+    --bg-primary: #fff0f8;
+    --bg-secondary: #fff;
+    --text-primary: #4a1a3d;
+    --text-secondary: #7a4a6d;
+    --text-light: #a87a9d;
+    --border: #ffd4ed;
+    --shadow: rgba(231, 76, 156, 0.1);
+    --shadow-hover: rgba(231, 76, 156, 0.2);
+    --ai-message-bg: #ffe4f3;
+    --user-message-bg: #ffc9ea;
+}
+
+/* Background Gradient */
+body[data-theme="unicorn"] .background-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(231, 76, 156, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(245, 168, 209, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(241, 119, 181, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 20%, rgba(188, 62, 130, 0.15) 0%, transparent 35%);
+}
+
+body[data-theme="unicorn"] .shape {
+    background: radial-gradient(circle at 30% 30%, rgba(231, 76, 156, 0.3), rgba(245, 168, 209, 0.2));
+}
+
+/* Allow overflow for rainbow to be visible */
+body[data-theme="unicorn"] .theme-animations {
+    overflow: visible;
+}
+
+/* Rainbow Animation */
+body[data-theme="unicorn"] .unicorn-rainbow {
+    position: fixed !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    left: 0 !important;
+    top: 0 !important;
+    opacity: 0.6 !important;
+    animation: fadeRainbow 8s ease-in-out infinite !important;
+    pointer-events: none;
+    z-index: 1;
+    display: block !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+body[data-theme="unicorn"] .unicorn-rainbow svg {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+@keyframes fadeRainbow {
+    0%, 100% {
+        opacity: 0.5 !important;
+        transform: none !important;
+    }
+    50% {
+        opacity: 0.8 !important;
+        transform: none !important;
+    }
+}
+
+/* Sparkle Animation */
+body[data-theme="unicorn"] .unicorn-sparkle {
+    width: 20px;
+    height: 20px;
+    animation: sparkle 2s ease-out forwards;
+}
+
+@keyframes sparkle {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+/* Butterfly Animation */
+body[data-theme="unicorn"] .unicorn-butterfly {
+    width: 40px;
+    height: 40px;
+    animation: floatButterfly 8s ease-in-out forwards;
+}
+
+@keyframes floatButterfly {
+    0% { transform: translate(0, 100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translate(200px, -100px); opacity: 0; }
+}
