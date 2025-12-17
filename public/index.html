@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Therapy - AI Companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                    <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                    <circle cx="50" cy="50" r="15" fill="currentColor" opacity="0.7"/>
+                    <path d="M 50 35 Q 60 50 50 65 Q 40 50 50 35" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <h1 class="title">Aura Therapy</h1>
+            </div>
+            <p class="subtitle">Your compassionate AI companion</p>
+        </header>
+
+        <main class="chat-section">
+            <div class="chat-container" id="chatContainer">
+                <div class="message ai-message initial-message">
+                    <div class="message-avatar">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M12 8 L12 12 L15 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="message-content">
+                        <p>Hello, and welcome. I'm here to listen and support you. This is a safe space where you can share your thoughts and feelings. How are you doing today?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <div class="loading-indicator" id="loadingIndicator">
+                    <span class="loading-dot"></span>
+                    <span class="loading-dot"></span>
+                    <span class="loading-dot"></span>
+                </div>
+                <form class="input-form" id="chatForm">
+                    <textarea 
+                        class="message-input" 
+                        id="messageInput" 
+                        placeholder="Share what's on your mind..."
+                        rows="1"
+                        autocomplete="off"></textarea>
+                    <button type="submit" class="send-button" id="sendButton" aria-label="Send message">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 12 L21 4 L15 12 L21 20 L3 12 Z M15 12 L7 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Remember: This is an AI companion, not a replacement for professional therapy.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
