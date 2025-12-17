@@ -4,6 +4,7 @@ const chatForm = document.getElementById('chatForm');
 const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
 const loadingIndicator = document.getElementById('loadingIndicator');
+const fallbackNotice = document.getElementById('fallbackNotice');
 
 // State
 let isProcessing = false;
@@ -109,7 +110,14 @@ async function sendMessage(message) {
         }
         
         const data = await response.json();
-        
+
+        // Show/hide fallback notice
+        if (data.usingFallback) {
+            fallbackNotice.style.display = 'flex';
+        } else {
+            fallbackNotice.style.display = 'none';
+        }
+
         // Add AI response
         if (data.response) {
             addMessage(data.response);

@@ -48,27 +48,46 @@ app.post('/api/chat', async (req, res) => {
         };
 
         let response;
+        let usingFallback = false;
+        let usingCustomModel = USE_CUSTOM_MODEL;
 
+        // Try custom endpoint first if configured
         if (USE_CUSTOM_MODEL) {
-            // Text generation format for Inference Endpoints
-            // Send only the raw user message - endpoint handles instruction prompt
-            response = await fetch(HF_API_URL, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify({
-                    inputs: message,
-                    parameters: {
-                        max_new_tokens: 100
-                    }
-                })
-            });
-        } else {
+            try {
+                // Text generation format for Inference Endpoints
+                // Send only the raw user message - endpoint handles instruction prompt
+                response = await fetch(HF_API_URL, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify({
+                        inputs: message,
+                        parameters: {
+                            max_new_tokens: 100
+                        }
+                    })
+                });
+
+                // If custom endpoint fails (503 = unavailable, 500 = error), fall back to Router API
+                if (!response.ok && (response.status === 503 || response.status === 500)) {
+                    console.log('Custom endpoint unavailable, falling back to Router API...');
+                    usingFallback = true;
+                    usingCustomModel = false;
+                }
+            } catch (error) {
+                console.log('Custom endpoint error, falling back to Router API:', error.message);
+                usingFallback = true;
+                usingCustomModel = false;
+            }
+        }
+
+        // Use Router API if no custom model configured OR if custom endpoint failed
+        if (!USE_CUSTOM_MODEL || usingFallback) {
             // OpenAI-compatible chat format for Router API
-            response = await fetch(HF_API_URL, {
+            response = await fetch('https://router.huggingface.co/v1/chat/completions', {
                 method: 'POST',
                 headers: headers,
                 body: JSON.stringify({
-                    model: HF_MODEL,
+                    model: 'meta-llama/Llama-3.2-3B-Instruct',
                     messages: [
                         {
                             role: "system",
@@ -90,7 +109,7 @@ app.post('/api/chat', async (req, res) => {
             const errorText = await response.text();
             console.error('Hugging Face API Error:');
             console.error('Status:', response.status);
-            console.error('URL:', HF_API_URL);
+            console.error('URL:', usingCustomModel ? HF_API_URL : 'Router API');
             console.error('Response:', errorText);
 
             // Try to parse as JSON
@@ -107,7 +126,7 @@ app.post('/api/chat', async (req, res) => {
 
         // Handle response format based on API type
         let aiResponse;
-        if (USE_CUSTOM_MODEL) {
+        if (usingCustomModel) {
             // Text generation format - response is already clean from endpoint
             if (Array.isArray(data) && data[0]?.generated_text) {
                 aiResponse = data[0].generated_text;
@@ -129,7 +148,10 @@ app.post('/api/chat', async (req, res) => {
             aiResponse = aiResponse.trim();
         }
 
-        res.json({ response: aiResponse });
+        res.json({
+            response: aiResponse,
+            usingFallback: usingFallback
+        });
 
     } catch (error) {
         console.error('Error:', error);

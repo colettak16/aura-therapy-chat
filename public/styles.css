@@ -420,6 +420,31 @@ body {
     animation: messageSlideIn 0.5s ease-out;
 }
 
+/* Fallback notice */
+.fallback-notice {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border-left: 4px solid #ffa726;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    color: #856404;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {
