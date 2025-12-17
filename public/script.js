@@ -266,6 +266,16 @@ const svgElements = {
         <path d="M 10 90 Q 75 20 140 90" stroke="#e74c9c" stroke-width="8" fill="none" stroke-linecap="round"/>
         <path d="M 15 90 Q 75 30 135 90" stroke="#f177b5" stroke-width="8" fill="none" stroke-linecap="round"/>
         <path d="M 20 90 Q 75 40 130 90" stroke="#ffc9ea" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </svg>`,
+
+    unicornRainbow: `<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M -100 550 Q 500 50 1100 550" stroke="#C8A2D8" stroke-width="20" fill="none"/>
+        <path d="M -100 550 Q 500 65 1100 550" stroke="#9FA8DA" stroke-width="20" fill="none"/>
+        <path d="M -100 550 Q 500 80 1100 550" stroke="#90CAF9" stroke-width="20" fill="none"/>
+        <path d="M -100 550 Q 500 95 1100 550" stroke="#A5D6A7" stroke-width="20" fill="none"/>
+        <path d="M -100 550 Q 500 110 1100 550" stroke="#FFF59D" stroke-width="20" fill="none"/>
+        <path d="M -100 550 Q 500 125 1100 550" stroke="#FFCC80" stroke-width="20" fill="none"/>
+        <path d="M -100 550 Q 500 140 1100 550" stroke="#EF9A9A" stroke-width="20" fill="none"/>
     </svg>`
 };
 
@@ -298,6 +308,12 @@ function createBackgroundElements(theme) {
             star.style.top = Math.random() * 100 + '%';
             themeAnimationsContainer.appendChild(star);
         }
+    } else if (theme === 'unicorn') {
+        // Add one fixed rainbow that fades in/out
+        const rainbow = document.createElement('div');
+        rainbow.className = 'theme-element unicorn-rainbow';
+        rainbow.innerHTML = svgElements.unicornRainbow;
+        themeAnimationsContainer.appendChild(rainbow);
     }
 }
 
@@ -370,9 +386,9 @@ function spawnOccasionalElement(theme) {
             setTimeout(() => planet.remove(), 15000);
         }
     } else if (theme === 'unicorn') {
-        // Randomly spawn sparkle, butterfly, or rainbow
+        // Randomly spawn sparkle or butterfly (rainbow is always visible in background)
         const random = Math.random();
-        if (random < 0.5) {
+        if (random < 0.7) {
             // Spawn sparkle
             const sparkle = document.createElement('div');
             sparkle.className = 'theme-element unicorn-sparkle';
@@ -381,7 +397,7 @@ function spawnOccasionalElement(theme) {
             sparkle.style.top = (Math.random() * 90 + 5) + '%';
             themeAnimationsContainer.appendChild(sparkle);
             setTimeout(() => sparkle.remove(), 2000);
-        } else if (random < 0.8) {
+        } else {
             // Spawn butterfly
             const butterfly = document.createElement('div');
             butterfly.className = 'theme-element unicorn-butterfly';
@@ -390,15 +406,6 @@ function spawnOccasionalElement(theme) {
             butterfly.style.bottom = '-50px';
             themeAnimationsContainer.appendChild(butterfly);
             setTimeout(() => butterfly.remove(), 8000);
-        } else {
-            // Spawn rainbow
-            const rainbow = document.createElement('div');
-            rainbow.className = 'theme-element unicorn-rainbow';
-            rainbow.innerHTML = svgElements.unicornRainbow;
-            rainbow.style.left = (Math.random() * 40 + 30) + '%';
-            rainbow.style.top = (Math.random() * 40 + 20) + '%';
-            themeAnimationsContainer.appendChild(rainbow);
-            setTimeout(() => rainbow.remove(), 3000);
         }
     }
 }
