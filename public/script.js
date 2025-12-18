@@ -303,7 +303,7 @@ function createBackgroundElements(theme) {
             themeAnimationsContainer.appendChild(star);
         }
     } else if (theme === 'rainbow') {
-        // Add one fixed rainbow that fades in/out
+        // Add one fixed rainbow
         const rainbow = document.createElement('div');
         rainbow.className = 'theme-element rainbow-arc';
         rainbow.innerHTML = svgElements.rainbowArc;
@@ -380,7 +380,7 @@ function spawnOccasionalElement(theme) {
             setTimeout(() => planet.remove(), 15000);
         }
     } else if (theme === 'rainbow') {
-        // Randomly spawn sparkle or butterfly (rainbow is always visible in background)
+        // Randomly spawn sparkle or butterfly
         const random = Math.random();
         if (random < 0.7) {
             // Spawn sparkle

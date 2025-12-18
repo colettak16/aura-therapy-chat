@@ -15,10 +15,12 @@ app.use(express.static('public'));
 // If HF_ENDPOINT_URL is set, use Inference Endpoint with your custom model
 // Otherwise, fall back to Router API with a public chat model
 const HF_ENDPOINT_URL = process.env.HF_ENDPOINT_URL;
+// TEMP: Force fallback to Mistral for testing - uncomment line below to revert
 const USE_CUSTOM_MODEL = !!HF_ENDPOINT_URL;
+//const USE_CUSTOM_MODEL = false;
 
 const HF_MODEL = USE_CUSTOM_MODEL
-    ? 'ZooDka/Aura-Therapy-Model-Exported'
+    ? 'ZooDka/Aura-Therapy-Model'
     : 'meta-llama/Llama-3.2-3B-Instruct'; // Fallback public model
 
 const HF_API_URL = USE_CUSTOM_MODEL
@@ -62,7 +64,7 @@ app.post('/api/chat', async (req, res) => {
                     body: JSON.stringify({
                         inputs: message,
                         parameters: {
-                            max_new_tokens: 100
+                            max_new_tokens: 512
                         }
                     })
                 });
@@ -91,14 +93,14 @@ app.post('/api/chat', async (req, res) => {
                     messages: [
                         {
                             role: "system",
-                            content: "You are a compassionate therapy assistant. Provide supportive, empathetic responses to help users with their emotional well-being."
+                            content: "You are a therapy assistant chatbot. Respond to user concerns appropriately."
                         },
                         {
                             role: "user",
                             content: message
                         }
                     ],
-                    max_tokens: 150,
+                    max_tokens: 512,
                     temperature: 0.8,
                     top_p: 0.9
                 })
@@ -168,12 +170,12 @@ app.get('/', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`🌟 Aura Therapy Chat server running on http://localhost:${PORT}`);
-    console.log(`📝 API Key: ${process.env.HUGGINGFACE_API_KEY ? '✅ Configured' : '❌ Not set'}`);
-    console.log(`🤖 Model: ${HF_MODEL}`);
+    console.log(`Aura Therapy Chat server running on http://localhost:${PORT}`);
+    console.log(`API Key: ${process.env.HUGGINGFACE_API_KEY ? 'Configured' : 'Not set'}`);
+    console.log(`Model: ${HF_MODEL}`);
 
     if (USE_CUSTOM_MODEL) {
-        console.log(`✅ Using custom Inference Endpoint`);
+        console.log(`Using custom Inference Endpoint`);
         console.log(`   ${HF_ENDPOINT_URL.substring(0, 60)}...`);
     } else {
         console.log(`⚠️  Using fallback public model (Router API)`);
