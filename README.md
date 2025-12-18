@@ -1,21 +1,28 @@
 # Aura Therapy Chat - AI Companion
 
-A beautiful, therapeutic chat interface powered by your Hugging Face model: `ZooDka/Aura-Therapy-Model-Exported`
+A beautiful, therapeutic chat interface powered by a custom fine-tuned TinyLlama model with intelligent fallback support.
 
-## 🌟 Features
+## Features
 
+- **Dual Model System**: Custom Inference Endpoint with automatic fallback to public models (this is in case the fine-tuned model endpoint becomes unavailable, as we do not want to leave it running full time due to cost).
+- **Multiple Themes**: Choose from Default, Space, Rainbow, Forest, and Ocean
 - Clean, calming interface designed for therapeutic conversations
-- Real-time chat with your AI model
+- Real-time chat with AI model
 - Responsive design (works on mobile and desktop)
 - Smooth animations and transitions
-- No user configuration needed - model is pre-configured
+- Automatic fallback when custom endpoint is unavailable
 
-## 🚀 Quick Start
+## Quick Start
+
+### Note to AML Graders
+- This project has been deployed at https://aura-therapy-chat.onrender.com/ and is publicly accessible. It may take a few minutes to load if it has not been accessed by anyone over the past 60 minutes (due to using the free tier of Render). If you cannot get the public URL to work, either follow the instructions below to run it locally, or contact Kyle Coletta (248-798-6924) to get the site up and running again!
 
 ### Prerequisites
 
 - Node.js (version 14 or higher)
 - A Hugging Face API key ([Get one here](https://huggingface.co/settings/tokens))
+  - For Router API fallback: Read-only token is sufficient
+  - For custom Inference Endpoint: May require write permissions
 
 ### Installation
 
@@ -29,15 +36,20 @@ A beautiful, therapeutic chat interface powered by your Hugging Face model: `Zoo
    npm install
    ```
 
-3. **Configure your API key:**
+3. **Configure your environment:**
    - Copy `.env.example` to `.env`:
      ```bash
      cp .env.example .env
      ```
-   - Edit `.env` and add your Hugging Face API key:
+   - Edit `.env` and configure:
      ```
      HUGGINGFACE_API_KEY=hf_your_actual_api_key_here
      PORT=3000
+
+     # Optional: Add custom Inference Endpoint URL
+     # If not set, will use fallback public model (meta-llama/Llama-3.2-3B-Instruct)
+     # Use the below for our fine-tuned tinyllama model
+     HF_ENDPOINT_URL=https://xdz4qzthpwd4knlq.us-east-1.aws.endpoints.huggingface.cloud/
      ```
 
 4. **Start the server:**
@@ -48,161 +60,115 @@ A beautiful, therapeutic chat interface powered by your Hugging Face model: `Zoo
 5. **Open your browser:**
    Visit `http://localhost:3000`
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 aura-therapy-chat/
 ├── public/
-│   ├── index.html      # Main HTML file
-│   ├── styles.css      # All styling
-│   └── script.js       # Frontend JavaScript
-├── server.js           # Express server + API integration
-├── package.json        # Dependencies
-├── .env.example        # Environment variables template
-├── .gitignore         # Git ignore file
-└── README.md          # This file
+│   ├── index.html          # Main HTML file
+│   ├── script.js           # Frontend JavaScript & theme logic
+│   └── styles/
+│       ├── base.css        # Base styles and layout
+│       ├── themes.css      # All theme definitions
+│       ├── space.css       # Space theme
+│       ├── unicorn.css     # Unicorn/Rainbow theme
+│       ├── forest.css      # Forest theme
+│       ├── ocean.css       # Ocean theme
+│       └── sunset.css      # Sunset theme
+├── server.js               # Express server + API integration
+├── package.json            # Dependencies
+├── .env                    # Environment variables (create from .env.example)
+├── .env.example            # Environment variables template
+├── .gitignore             # Git ignore file
+└── README.md              # This file
 ```
 
-## 🎨 Customization
+## Customization
 
-### Changing Colors
+### Switching Themes
 
-Edit the CSS variables in `public/styles.css`:
+The app includes 5 built-in themes that can be changed via the theme selector in the UI:
+- **Space**: Dark, cosmic theme with purple and blue accents, shooting starts, and planets
+- **Rainbow**: Vibrant, pink theme with rainbows and sparkles
+- **Forest**: Natural green tones, with trees and animated birds and squirrels
+- **Ocean**: Calming blue shades, with kelp and swimming fish
 
-```css
-:root {
-    --primary: #8b7355;        /* Main brand color */
-    --secondary: #d4b5a0;      /* Secondary accent */
-    --accent: #e8d5c4;         /* Light accent */
-    /* ... more variables ... */
-}
-```
+Themes are stored in `public/styles/` and automatically persist in localStorage.
 
-### Changing Fonts
+### Creating a New Theme
 
-Fonts are loaded from Google Fonts. To change them:
-
-1. Find fonts on [Google Fonts](https://fonts.google.com)
-2. Update the `<link>` in `public/index.html`
-3. Update the `font-family` in `public/styles.css`
-
-### Modifying the Welcome Message
-
-Edit the initial message in `public/index.html` (around line 28).
-
-### Adjusting Model Parameters
-
-Edit the API call parameters in `server.js` (around line 38):
-
-```javascript
-parameters: {
-    max_new_tokens: 300,    // Max response length
-    temperature: 0.7,       // Creativity (0.0 - 1.0)
-    top_p: 0.95,           // Nucleus sampling
-    return_full_text: false
-}
-```
-
-## 🌐 Deployment Options
-
-### Option 1: Deploy to Render (Recommended - Free)
-
-1. Push your code to GitHub
-2. Go to [Render](https://render.com)
-3. Create a new "Web Service"
-4. Connect your GitHub repository
-5. Configure:
-   - **Build Command:** `npm install`
-   - **Start Command:** `npm start`
-6. Add environment variable: `HUGGINGFACE_API_KEY`
-7. Deploy!
-
-### Option 2: Deploy to Railway
-
-1. Push your code to GitHub
-2. Go to [Railway](https://railway.app)
-3. Create a new project from your GitHub repo
-4. Add environment variable: `HUGGINGFACE_API_KEY`
-5. Railway will auto-detect and deploy
-
-### Option 3: Deploy to Heroku
-
-1. Install Heroku CLI
-2. Login: `heroku login`
-3. Create app: `heroku create your-app-name`
-4. Set environment variable:
-   ```bash
-   heroku config:set HUGGINGFACE_API_KEY=your_key_here
+1. Create a new CSS file in `public/styles/` (e.g., `mytheme.css`)
+2. Define theme-specific CSS variables:
+   ```css
+   [data-theme="mytheme"] {
+       --primary: #your-color;
+       --secondary: #your-color;
+       --accent: #your-color;
+       /* ... other variables ... */
+   }
    ```
-5. Deploy:
-   ```bash
-   git push heroku main
-   ```
+3. Add the theme to the selector in `public/index.html`
+4. Add the stylesheet link in `public/index.html`
 
-### Option 4: Deploy to Vercel
-
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run: `vercel`
-3. Follow prompts
-4. Add environment variable in Vercel dashboard
-
-## 🔒 Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `HUGGINGFACE_API_KEY` | Your Hugging Face API key | Yes |
-| `PORT` | Port to run the server on | No (defaults to 3000) |
-
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "API key not configured" error
-- Make sure you've created a `.env` file
-- Verify your API key is correct
+- Make sure you've created a `.env` file (not just `.env.example`)
+- Verify your API key is correct and starts with `hf_`
 - Restart the server after updating `.env`
 
+### Custom endpoint unavailable
+- Check if your Inference Endpoint is running in the [Hugging Face dashboard](https://ui.endpoints.huggingface.co/)
+- Verify the endpoint URL in `.env` is correct
+- The app will automatically fall back to the public Router API
+- Check server logs to see which model is being used
+
 ### Model takes a long time to respond
-- Hugging Face models may need to "wake up" if they haven't been used recently
-- First request might take 20-30 seconds
+- Hugging Face Inference Endpoints may need to "wake up" if they haven't been used recently (cold start)
+- First request might take 20-60 seconds
 - Subsequent requests should be faster
+- Consider using a dedicated endpoint for faster response times
+
+### "Model not supported" error
+- This means the model isn't available through your Router API providers
+- Enable the required provider at: https://huggingface.co/settings/router
+- Or change to a different fallback model in `server.js`
 
 ### Port already in use
 - Change the PORT in your `.env` file
-- Or stop the other process using port 3000
+- Or stop the other process using port 3000:
+  ```bash
+  # macOS/Linux
+  lsof -ti:3000 | xargs kill
 
-## 📝 Development
+  # Windows
+  netstat -ano | findstr :3000
+  taskkill /PID <PID> /F
+  ```
 
-To make changes:
+### Cloning to a new machine
+- `.env` is not included in git (for security)
+- You'll need to recreate the `.env` file and add your API key
+- Copy from `.env.example` as a template
 
-1. Edit files in VS Code or your preferred editor
-2. Save your changes
-3. Server will need to be restarted for backend changes:
-   ```bash
-   # Stop server (Ctrl+C)
-   npm start
-   ```
-4. Frontend changes (HTML/CSS/JS in `public/`) just need a browser refresh
-
-## 🤝 Contributing
-
-This is your project! Modify it however you like. Some ideas:
-- Add user authentication
-- Save chat history
-- Add voice input/output
-- Implement typing indicators
-- Add dark mode toggle
-
-## 📄 License
+## License
 
 MIT License - Feel free to use this for any purpose!
 
-## 🆘 Support
+## Support
 
 If you encounter issues:
-1. Check the console for errors
-2. Verify your API key is valid
-3. Make sure the model ID is correct
-4. Check Hugging Face status page
+1. Check the browser console (F12) for frontend errors
+2. Check the server terminal for backend errors
+3. Verify your API key is valid at https://huggingface.co/settings/tokens
+4. Verify your custom endpoint is running at https://ui.endpoints.huggingface.co/
+5. Check Hugging Face status page: https://status.huggingface.co/
 
-## 🎉 Enjoy!
+## 📚 Additional Resources
 
-Your Aura Therapy chatbot is ready to provide compassionate AI companionship!
+- [Hugging Face Inference Endpoints Documentation](https://huggingface.co/docs/inference-endpoints/)
+- [Model Card: ZooDka/Aura-Therapy-Model](https://huggingface.co/ZooDka/Aura-Therapy-Model)
+
+## Enjoy!
+
+Your Aura Therapy chatbot is ready to provide compassionate AI companionship with beautiful themes and intelligent fallback support!
