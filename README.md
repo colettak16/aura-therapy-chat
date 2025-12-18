@@ -5,6 +5,8 @@ A beautiful, therapeutic chat interface powered by a custom fine-tuned TinyLlama
 ## Note to AML Graders
 - This project has been deployed at https://aura-therapy-chat.onrender.com/ and is publicly accessible. It may take a few minutes to load if it has not been accessed by anyone over the past 60 minutes (due to using the free tier of Render). If you cannot get the public URL to work, either follow the instructions below to run it locally, or contact Kyle Coletta (248-798-6924) to get the site up and running again!
 
+- AuraModelTraining.ipynb contains all code used to fine tune the model, deploy to hugging face, and evaluate.
+
 ## Features
 
 - **Dual Model System**: Custom Inference Endpoint with automatic fallback to public models (this is in case the fine-tuned model endpoint becomes unavailable, as we do not want to leave it running full time due to cost).
