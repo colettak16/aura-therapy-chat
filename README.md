@@ -69,14 +69,12 @@ aura-therapy-chat/
 ├── public/
 │   ├── index.html          # Main HTML file
 │   ├── script.js           # Frontend JavaScript & theme logic
-│   └── styles/
-│       ├── base.css        # Base styles and layout
-│       ├── themes.css      # All theme definitions
-│       ├── space.css       # Space theme
-│       ├── unicorn.css     # Unicorn/Rainbow theme
-│       ├── forest.css      # Forest theme
-│       ├── ocean.css       # Ocean theme
-│       └── sunset.css      # Sunset theme
+│   ├── styles.css        # Base styles and layout
+│   ├── theme-spaceship.css       # Space theme
+│   ├── theme-rainbow.css     # Rainbow theme
+│   ├── theme-forest.css      # Forest theme
+│   ├── theme-ocean.css       # Ocean theme
+├── AuraModelTraining.ipynb   # Model fine tuning and deployment to Hugging Face
 ├── server.js               # Express server + API integration
 ├── package.json            # Dependencies
 ├── .env                    # Environment variables (create from .env.example)
