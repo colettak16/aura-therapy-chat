@@ -1,6 +1,6 @@
 # Aura Therapy Chat - AI Companion
 
-A beautiful, therapeutic chat interface powered by a custom fine-tuned TinyLlama model with intelligent fallback support.
+A therapeutic chat interface powered by a custom fine-tuned TinyLlama model with intelligent fallback support.
 
 ## Note to AML Graders
 - This project has been deployed at https://aura-therapy-chat.onrender.com/ and is publicly accessible. It may take a few minutes to load if it has not been accessed by anyone over the past 60 minutes (due to using the free tier of Render). If you cannot get the public URL to work, either follow the instructions below to run it locally, or contact Kyle Coletta (248-798-6924) to get the site up and running again!
@@ -129,7 +129,6 @@ Themes are stored in `public/styles/` and automatically persist in localStorage.
 - Hugging Face Inference Endpoints may need to "wake up" if they haven't been used recently (cold start)
 - First request might take 20-60 seconds
 - Subsequent requests should be faster
-- Consider using a dedicated endpoint for faster response times
 
 ### "Model not supported" error
 - This means the model isn't available through your Router API providers
@@ -173,4 +172,4 @@ If you encounter issues:
 
 ## Enjoy!
 
-Your Aura Therapy chatbot is ready to provide compassionate AI companionship with beautiful themes and intelligent fallback support!
+The Aura Therapy chatbot is ready to provide compassionate AI companionship to any user!
